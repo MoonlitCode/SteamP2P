@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://brsq0okkjtq3w"]
+
+[ext_resource type="Script" uid="uid://cb2n4kyioupyi" path="res://Scripts/SteamDev/SteamNetwork.cs" id="1_g7hsr"]
+[ext_resource type="PackedScene" uid="uid://cxq0bexyjammw" path="res://Nodes/PlayerController2D.tscn" id="2_d8ofa"]
+
+[node name="SteamNetwork" type="Node"]
+script = ExtResource("1_g7hsr")
+_playerController = ExtResource("2_d8ofa")

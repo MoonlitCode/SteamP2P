@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwjxov8xam4df"]
+
+[ext_resource type="Script" uid="uid://do74qyla6erdp" path="res://Scripts/Game.cs" id="1_kldst"]
+[ext_resource type="Texture2D" uid="uid://cpcf5mvu1jyi3" path="res://icon.svg" id="2_j5yw3"]
+[ext_resource type="PackedScene" uid="uid://dbrmt8or7kts1" path="res://Nodes/HUD/HUD_Multiplayer.tscn" id="3_b2bpf"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_hudMultiplayer")]
+script = ExtResource("1_kldst")
+_hudMultiplayer = NodePath("HUD_Multiplayer")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://cxq0bexyjammw")
+spawn_path = NodePath("../PlayerSpawnNode")
+spawn_limit = 2
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(288, 797)
+scale = Vector2(4, 4)
+texture = ExtResource("2_j5yw3")
+
+[node name="PlayerSpawnNode" type="Node2D" parent="."]
+
+[node name="HUD_Multiplayer" parent="." instance=ExtResource("3_b2bpf")]

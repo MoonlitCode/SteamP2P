@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnlfh0gkc0at0"]
+
+[ext_resource type="Script" uid="uid://ddvv0qg7mfs0o" path="res://Scripts/SteamDev/SteamGameInit.cs" id="1_2v575"]
+
+[node name="SteamGameInit" type="Node"]
+script = ExtResource("1_2v575")

@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbrmt8or7kts1"]
+
+[ext_resource type="Script" uid="uid://c55unpi5kjo8k" path="res://Scripts/HUD/HUDMultiplayer.cs" id="1_pd37w"]
+[ext_resource type="Theme" uid="uid://dxk0cee4w8u8h" path="res://Themes/Text/Theme_Buttons.tres" id="2_iqxwt"]
+
+[node name="HUD_Multiplayer" type="Control" node_paths=PackedStringArray("_hostButton", "_clientButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 391.0
+offset_bottom = 194.0
+script = ExtResource("1_pd37w")
+_hostButton = NodePath("Panel/VBoxContainer/Host")
+_clientButton = NodePath("Panel/VBoxContainer/Join")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Host" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme = ExtResource("2_iqxwt")
+text = "Host"
+
+[node name="Join" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme = ExtResource("2_iqxwt")
+text = "Join
+"
