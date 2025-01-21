@@ -13,7 +13,7 @@ public partial class PlayerController2D : Node {
 
 	public override void _PhysicsProcess(double delta) {
 		base._PhysicsProcess(delta);
-		if (GetMultiplayerAuthority() != PlayerID) return;
+		if (!IsMultiplayerAuthority()) return;
 		if (_characterBody2D == null) return;
 		HandleMovement(delta);
 		HandleRotation(delta);
