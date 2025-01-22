@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxq0bexyjammw"]
+[gd_scene load_steps=7 format=3 uid="uid://cxq0bexyjammw"]
 
 [ext_resource type="Script" uid="uid://bwvy2jgf435fh" path="res://Scripts/PlayerController2D.cs" id="1_5cbks"]
 [ext_resource type="Texture2D" uid="uid://cpcf5mvu1jyi3" path="res://icon.svg" id="1_f3fwa"]
+[ext_resource type="Script" uid="uid://43dbbd5666xo" path="res://Scripts/UnitMovementInputs.cs" id="2_35hhw"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_35hhw"]
-properties/0/path = NodePath(".:PlayerID")
+properties/0/path = NodePath("UnitMovementInputs:DirectionalInput")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath("UnitMovementInputs:PlayerID")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5cbks"]
 properties/0/path = NodePath("CharacterBody2D:position")
@@ -19,14 +23,15 @@ properties/1/replication_mode = 1
 [sub_resource type="CircleShape2D" id="CircleShape2D_5cbks"]
 radius = 70.0
 
-[node name="PlayerController2D" type="Node" node_paths=PackedStringArray("_authoritySynchronizer", "_characterBody2D", "_sprite2D")]
+[node name="PlayerController2D" type="Node" node_paths=PackedStringArray("_unitMovementInputs", "_characterBody2D", "_sprite2D")]
 script = ExtResource("1_5cbks")
-_authoritySynchronizer = NodePath("AuthoritySynchronizer")
+_unitMovementInputs = NodePath("UnitMovementInputs")
 _characterBody2D = NodePath("CharacterBody2D")
 _sprite2D = NodePath("CharacterBody2D/Sprite2D")
 
-[node name="AuthoritySynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="UnitMovementInputs" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_35hhw")
+script = ExtResource("2_35hhw")
 
 [node name="CharacterSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_5cbks")

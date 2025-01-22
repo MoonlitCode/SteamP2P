@@ -48,7 +48,7 @@ public partial class SteamNetwork : Node {
 		if (playerToAdd is not PlayerController2D playerController2D) return;
 		_playerControllerDict!.Add(id, playerController2D);
 		_playerSpawnNode?.AddChild(playerController2D, true);
-		playerController2D.SetPlayerID(id);
+		playerController2D.SetPlayerID((int)id);
 	}
 
 	[Rpc]

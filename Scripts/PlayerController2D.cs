@@ -4,37 +4,26 @@ using SteamP2P.Scripts.Moons.Helpers;
 namespace SteamP2P.Scripts;
 
 public partial class PlayerController2D : Node {
-	[Export] private MultiplayerSynchronizer? _authoritySynchronizer;
+	[Export] private UnitMovementInputs? _unitMovementInputs;
 	[Export] private CharacterBody2D? _characterBody2D;
 	[Export] private Sprite2D? _sprite2D;
 	[Export] private float _moveSpeed = 6000.0f;
 	[Export] private float _rotateSpeed = 5.0f;
-	[Export] public long PlayerID { get; private set; } = 1;
 
 	public override void _PhysicsProcess(double delta) {
 		base._PhysicsProcess(delta);
-		if (!IsMultiplayerAuthority()) return;
 		if (_characterBody2D == null) return;
 		HandleMovement(delta);
 		HandleRotation(delta);
 	}
 
-	public void SetPlayerID(long id) {
-		PlayerID = id;
-		Name = $"{nameof(PlayerController2D)}: {id.ToString()}";
-		_authoritySynchronizer?.SetMultiplayerAuthority((int)id);
-		SetMultiplayerAuthority((int)id);
-		GD.Print($"{PlayerID} set PlayerID: {id}");
-	}
+	public void SetPlayerID(int id) => _unitMovementInputs?.SetPlayerID(id);
 
 	private void HandleMovement(double delta) {
+		if (_unitMovementInputs == null) return;
+
 		var velocity = _characterBody2D!.Velocity;
-		var direction = Input.GetVector(
-			InputStrings.MoveLeft,
-			InputStrings.MoveRight,
-			InputStrings.MoveUp,
-			InputStrings.MoveDown
-		).Normalized();
+		var direction = _unitMovementInputs.DirectionalInput;
 
 		if (direction != Vector2.Zero) {
 			velocity.X = direction.X * _moveSpeed * (float)delta;
